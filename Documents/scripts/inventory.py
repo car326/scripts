@@ -17,13 +17,17 @@ region_list = [
     "sa-east-1"
     ]
 
-    gEC2 = 0
+EC2 = 0  
+  
+for item in region_list:
 
-    for item in region_list:
+    configc = boto3.client("config", region_name=item)
+       
+    response = configc.list_discovered_resources(
+    resourceType='AWS::EC2::Instance',
+    resourceIds=[
+        'string',
+    ],
+   )
 
-       ec2c = boto3.client("ec2", region_name=item)
-       ec2r = boto3.resource("ec2", region_name=item)
-
-       EC2 = 0
-
-         response
+    
